@@ -6,7 +6,9 @@ const Top = () => {
   return (
     <section className='h-full'>
       <TopText />
-      <TopImages />
+      <div className='block lg:hidden'>
+        <TopImages />
+      </div>
     </section>
   );
 };

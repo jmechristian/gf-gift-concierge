@@ -5,7 +5,10 @@ const Bottom = () => {
   const formRef = useRef();
 
   return (
-    <section className='flex flex-col gap-12 px-8 py-14 w-full' id='start'>
+    <section
+      className='flex flex-col lg:flex-row gap-12 px-8 lg:px-12 xl:px-0 py-14 lg:py-20 w-full md:w-4/5 md:mx-auto lg:w-full max-w-6xl'
+      id='start'
+    >
       <div className='text-5xl font-canela text-light'>
         All The Credit, None of the Stress
       </div>
