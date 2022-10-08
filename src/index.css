@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Canela Web';
+  src: url('./assets/fonts/Canela-Thin.eot');
+  src: url('./assets/fonts/Canela-Thin.eot?#iefix') format('embedded-opentype'),
+    url('./assets/fonts/Canela-Thin.woff2') format('woff2'),
+    url('./assets/fonts/Canela-Thin.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EngraversGothicBT';
+  src: url('./assets/fonts/EngraversGothic.eot');
+  src: url('./assets/fonts/EngraversGothic.eot?#iefix')
+      format('embedded-opentype'),
+    url('./assets/fonts/EngraversGothic.woff2') format('woff2'),
+    url('./assets/fonts/EngraversGothic.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
