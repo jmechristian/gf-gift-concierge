@@ -35,7 +35,7 @@ const Bottom = () => {
           />
         </div>
         <button className='bg-black text-white text-xl font-engravers py-3'>
-          <div className='mb-1'>Connect With The Finch</div>
+          <div className='mb-1'>Be a Holiday Hero</div>
         </button>
       </form>
     </section>
