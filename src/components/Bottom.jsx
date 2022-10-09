@@ -4,36 +4,46 @@ import emailjs from '@emailjs/browser';
 const Bottom = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(null);
   const [name, setName] = useState('');
-  const [nameError, setNameError] = useState(null);
   const [email, setEmail] = useState('');
-  const [emailError, setEmailError] = useState(null);
   const [description, setDescription] = useState('');
-  const [descriptionError, setDescriptionError] = useState(null);
+
   const formRef = useRef();
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
-    setIsLoading(true);
+    if (
+      name.trim() === '' ||
+      email.trim() === '' ||
+      description.trim() === ''
+    ) {
+      setError('Please fill out all required fields');
+    } else {
+      setError(false);
+      setIsLoading(true);
 
-    emailjs
-      .sendForm(
-        'service_pmwa7qn',
-        'template_njuvwx5',
-        formRef.current,
-        'ARes42PsI77aAMQEV'
-      )
-      .then(
-        (response) => {
-          if (response.status === 200) {
-            formRef.current.reset();
-            setSubmitted(true);
+      emailjs
+        .sendForm(
+          'service_pmwa7qn',
+          'template_njuvwx5',
+          formRef.current,
+          'ARes42PsI77aAMQEV'
+        )
+        .then(
+          (response) => {
+            if (response.status === 200) {
+              setSubmitted(true);
+              setName('');
+              setEmail('');
+              setDescription('');
+            }
+          },
+          (error) => {
+            console.log(error.text);
           }
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
+        );
+    }
   };
 
   return (
@@ -41,7 +51,7 @@ const Bottom = () => {
       className='flex flex-col lg:flex-row gap-12 px-8 lg:px-12 xl:px-0 py-14 lg:py-20 w-full md:w-4/5 md:mx-auto lg:w-full max-w-6xl'
       id='start'
     >
-      <div className='lg:w-4/5 flex flex-col gap-4'>
+      <div className='lg:w-4/5 flex flex-col gap-6'>
         <div className='text-5xl font-canela text-light'>
           All The Credit, None of the Stress
         </div>
@@ -86,17 +96,30 @@ const Bottom = () => {
             className='w-full bg-neutral-200 focus:ring-0 focus:border-base-yellow'
           />
         </div>
-        <div className='font-canela w-full text-right -mt-6 text-sm'>
-          *Required
+        <div className='font-canela w-full text-right -mt-6 flex justify-between'>
+          {error ? <div className='text-red-600'>{error}</div> : <div></div>}
+          <div>*Required</div>
         </div>
-        <button
-          className='bg-black text-white text-xl font-engravers py-3'
-          type='submit'
-        >
-          <div className='mb-1'>
-            {isLoading ? 'Grabbing The Wrapping Paper...' : 'Be a Holiday Hero'}
-          </div>
-        </button>
+        {submitted ? (
+          <button
+            className='bg-neutral-700 text-white text-xl font-engravers py-3'
+            type='submit'
+            disabled
+          >
+            <div className='mb-1'>Thank You We’ll Be In Touch Soon</div>
+          </button>
+        ) : (
+          <button
+            className='bg-black text-white text-xl font-engravers py-3'
+            type='submit'
+          >
+            <div className='mb-1'>
+              {isLoading
+                ? 'Grabbing The Wrapping Paper...'
+                : 'Be a Holiday Hero'}
+            </div>
+          </button>
+        )}
       </form>
     </section>
   );
