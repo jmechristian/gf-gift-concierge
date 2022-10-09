@@ -1,9 +1,37 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 
 const Mid = () => {
+  const midRef = useRef();
+  const inView = useInView(midRef);
+
+  const variants = {
+    enter: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 400,
+        damping: 100,
+        mass: 1,
+        delay: 0.15,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      y: 30,
+    },
+  };
+
   return (
     <section className='bg-black text-white py-12 px-8 lg:px-12 md:items-center'>
-      <div className='max-w-6xl md:w-4/5 lg:w-full flex flex-col gap-10 mx-auto '>
+      <motion.div
+        className='max-w-6xl md:w-4/5 lg:w-full flex flex-col gap-10 mx-auto '
+        ref={midRef}
+        variants={variants}
+        initial='hidden'
+        animate={inView ? 'enter' : 'hidden'}
+      >
         <div className='flex flex-col lg:flex-row lg:w-full lg:justify-between gap-6 lg:gap-12'>
           <div className='flex flex-col gap-2 w-full'>
             <div className='font-engravers text-3xl'>1. Inquire</div>
@@ -37,7 +65,7 @@ const Mid = () => {
             ^Local delivery available in Alexandria, Arlington, and DC.
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

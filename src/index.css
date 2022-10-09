@@ -2,7 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
+img {
+  display: inline-block;
+}
+
+/* @font-face {
   font-family: 'Canela Web';
   src: url('./assets/fonts/Canela-Thin.eot');
   src: url('./assets/fonts/Canela-Thin.eot?#iefix') format('embedded-opentype'),
@@ -23,4 +27,4 @@
   font-weight: normal;
   font-style: normal;
   font-display: swap;
-}
+} */

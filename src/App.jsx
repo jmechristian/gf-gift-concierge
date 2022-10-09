@@ -6,7 +6,6 @@ import Bottom from './components/Bottom';
 function App() {
   return (
     <div className='h-full'>
-      <DevHeader />
       <section className='bg-base-light'>
         <Top />
         <Mid />
